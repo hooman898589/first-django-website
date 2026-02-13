@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    همه پست ها
+{% endblock %}
+
+{% block content %}
+ <header class="header">
+        <h1>وبلاگ سبز</h1>
+    </header>
+
+    <main class="container">
+
+        <h2 class="section-title">همهٔ پست‌ها</h2>
+{% if posts.object_list|length != 0 %}
+        <div class="posts-container">
+
+            <!-- نمونه پست ثابت (تو بعداً تکرارش می‌کنی) -->
+            {% for post in posts %}
+            <div class="post-card">
+                <img src="{{ post.image.url }}" class="post-image">
+
+                <h3 class="post-title">{{ post.title }}</h3>
+
+                <p class="post-description">
+                    {{ post.description|truncatechars:50 }}
+                </p>
+
+                <div class="tags">
+                    {% for tag in post.tag.all %}
+                    <span class="tag" ><a href="?tag={{ tag.name }}" style="color: green" >{{ tag.name }}</a></span>
+
+                    {% endfor %}
+                </div>
+
+
+            </div>
+{% endfor %}
+
+
+        </div>
+
+    </main>
+    <div class="pagination">
+    {% if posts.has_previous %}
+    <a href="?page{{ posts.previous_page_number }}&tag={{ request.GET.tag }}" class="page-btn">قبلی</a>
+        {% endif %}
+        {% for page in posts.paginator.page_range %}
+    <a href="?page={{ page }}&tag={{ request.GET.tag }}" class="page-number active">{{ page }}</a>
+
+        {% endfor %}
+    {% if posts.has_next %}
+
+    <a href="?page={{ posts.next_page_number }}&tag={{ request.GET.tag }}" class="page-btn">بعدی</a>
+    {% endif %}
+</div>
+    {% else %}
+
+    <h1>چیزی وجود ندارد</h1>
+{% endif %}
+{% endblock %}

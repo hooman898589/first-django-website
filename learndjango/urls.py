@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 from Blog.sitemaps import SitemapPost
-from Blog.views import singlePoste
+from Blog.views import singlePoste , posts_view
 from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.conf import settings
@@ -34,6 +34,7 @@ sitemaps={
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+    path("posts/",posts_view , name="posts"),
     path('post/<int:id>',singlePoste,name="post"),
     path("accounts/login", auth_views.LoginView.as_view(success_url="/")),
         path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, 

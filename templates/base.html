@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="nav-logo">وبلاگ سبز</div>
+
+    <ul class="nav-links">
+        <li><a href="#">خانه</a></li>
+        <li><a href="#">پست‌ها</a></li>
+        <li><a href="#">درباره</a></li>
+        <li><a href="#">تماس</a></li>
+    </ul>
+
+    <form class="search-box">
+        <input type="text" placeholder="جستجو...">
+        <button type="submit">🔍</button>
+    </form>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
