@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from .models import Post , comment
-
+from django_summernote.admin import SummernoteModelAdmin
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -22,7 +22,8 @@ class CommentInline(admin.TabularInline):
 
 
 
-class AdminPost(admin.ModelAdmin):
+class AdminPost(SummernoteModelAdmin):
+    summernote_fields=('description',)
     inlines = [CommentInline]
     list_display=[
         'title',
