@@ -17,7 +17,9 @@
         <div class="posts-container">
 
             <!-- نمونه پست ثابت (تو بعداً تکرارش می‌کنی) -->
+
             {% for post in posts %}
+                <a href="{% url 'post' id=post.id %}">
             <div class="post-card">
                 <img src="{{ post.image.url }}" class="post-image">
 
@@ -36,6 +38,7 @@
 
 
             </div>
+                </a>
 {% endfor %}
 
 

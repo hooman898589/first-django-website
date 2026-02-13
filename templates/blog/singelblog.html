@@ -1,59 +1,30 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>عنوان پست</title>
-    <style>
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
 
 
-    </style>
-</head>
 
-<body>
-<nav class="navbar">
-    <div class="nav-logo">وبلاگ سبز</div>
-
-    <ul class="nav-links">
-        <li><a href="#">خانه</a></li>
-        <li><a href="#">پست‌ها</a></li>
-        <li><a href="#">درباره ما</a></li>
-        <li><a href="#">تماس</a></li>
-    </ul>
-</nav>
-
-
-    <header class="header">
-        <h1>وبلاگ سبز</h1>
-    </header>
-
+{% block content %}
 
     <main class="container">
 
         <article class="post-single">
 
-            <img src="/media/sample.jpg" class="post-image">
+            <img src="{{ post.image.url }}" class="post-image">
 
-            <h1 class="post-title">عنوان پست نمونه</h1>
+            <h1 class="post-title">{{ post.title }}</h1>
 
-            <div class="post-meta-single">
-                <span>نویسنده: کاربر نمونه</span>
-                <span>تاریخ: ۱۴۰۳/۱۱/۲۰</span>
-            </div>
 
             <div class="tags">
-                <span class="tag">طبیعت</span>
-                <span class="tag">زندگی</span>
-                <span class="tag">سبز</span>
+                {% for tag in post.tag.all %}
+                 <span class="tag" ><a href="{% url 'posts' %}?tag={{ tag.name }}" style="color: green" >{{ tag.name }}</a></span>
+               {% endfor %}
             </div>
 
             <div class="post-content">
-                <p>
-                    این یک متن نمونه برای محتوای پست است. این متن فقط برای نمایش ظاهر قالب قرار داده شده است.
-                    شما بعداً این متن را با محتوای واقعی جایگزین می‌کنید.
-                </p>
-                <p>
-                    می‌توانید پاراگراف‌های طولانی، نقل‌قول‌ها، لیست‌ها و هر نوع متن دیگری را اینجا قرار دهید.
-                </p>
+   {{ post.description|safe }}
             </div>
 
         </article>
@@ -82,6 +53,4 @@
         </section>
 
     </main>
-
-</body>
-</html>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib.admin.templatetags.admin_list import pagination
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.template.loader import get_template
 
@@ -8,7 +8,16 @@ from Blog.models import Post
 
 
 def singlePoste(request, id):
-    pass
+    post = get_object_or_404(Post, id=id)
+
+    return render(request, "blog/singelblog.html", {"post": post})
+
+
+
+
+
+
+
 
 def posts_view(request):
 
