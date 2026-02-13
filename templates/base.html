@@ -1,4 +1,5 @@
 {% load static %}
+{% load mytag %}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -19,10 +20,7 @@
         <li><a href="#">تماس</a></li>
     </ul>
 
-    <form class="search-box">
-        <input type="text" placeholder="جستجو...">
-        <button type="submit">🔍</button>
-    </form>
+    {% search %}
 </nav>
 
 {% block content %}

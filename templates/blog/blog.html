@@ -44,15 +44,15 @@
     </main>
     <div class="pagination">
     {% if posts.has_previous %}
-    <a href="?page{{ posts.previous_page_number }}&tag={{ request.GET.tag }}" class="page-btn">قبلی</a>
+    <a href="?page{{ posts.previous_page_number }}&tag={{ request.GET.tag }}&q={{ request.GET.q }}" class="page-btn">قبلی</a>
         {% endif %}
         {% for page in posts.paginator.page_range %}
-    <a href="?page={{ page }}&tag={{ request.GET.tag }}" class="page-number active">{{ page }}</a>
+    <a href="?page={{ page }}&tag={{ request.GET.tag }}&q={{ request.GET.q }}" class="page-number active">{{ page }}</a>
 
         {% endfor %}
     {% if posts.has_next %}
 
-    <a href="?page={{ posts.next_page_number }}&tag={{ request.GET.tag }}" class="page-btn">بعدی</a>
+    <a href="?page={{ posts.next_page_number }}&tag={{ request.GET.tag }}&q={{ request.GET.q }}" class="page-btn">بعدی</a>
     {% endif %}
 </div>
     {% else %}
